@@ -52,7 +52,11 @@ function convertToArrayBuffer(blob) {
 function findPitch(audioBuffer) {
     const float32Array = audioBuffer.getChannelData(0);
     const pitch = detectPitch(float32Array);
-    console.log(pitch);
+    console.log("Pitch: " + pitch);
+
+    if (pitch != null) {
+        convertPitchToNote(pitch)
+    }
 }
 
 

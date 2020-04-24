@@ -5,17 +5,11 @@ class Result extends React.Component {
 
     constructor(props) {
         super(props)
-
-        this.state = {note: null};
-    }
-
-    changeNote = (note)  => {
-        this.setState({note: note});
     }
 
     render () {
         return <div className='message-box'>
-            Note: {this.state.note}
+            Note: {this.props.recognizedNote}
         </div>
     }
 }
