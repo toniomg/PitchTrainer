@@ -5,7 +5,6 @@ import StartButton from "./StartButton";
 class GameOptions extends React.Component {
     render () {
         return <div className='message-box'>
-            Hello {this.props.name}
             <SelectedNote type={"Lower"}/>
             <SelectedNote type={"Higher"}/>
         </div>

@@ -9,6 +9,7 @@ class StartButton extends React.Component {
     constructor(props) {
         super(props);
         this.startButtonClicked = this.startButtonClicked.bind(this);
+        this.recordingFinished = this.recordingFinished.bind(this);
     }
 
     render () {
@@ -17,8 +18,13 @@ class StartButton extends React.Component {
     }
 
     startButtonClicked() {
-        startAudioCapturing(failedRecording);
-        this.props.onNoteChanged(440);
+        startAudioCapturing(failedRecording, this.recordingFinished);
+
+    }
+
+    recordingFinished(pitchDetected) {
+        console.log("Finished " + pitchDetected);
+        this.props.onNoteChanged(pitchDetected)
     }
 }
 

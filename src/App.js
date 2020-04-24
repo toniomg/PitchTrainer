@@ -17,8 +17,8 @@ class App  extends React.Component{
     }
 
     handleNoteChanged(newNote) {
-        this.setState({recognizedNote: newNote})
-        console.log("Note has changed: " + newNote);
+        console.log("Note has changed: " + newNote)
+        this.setState({recognizedNote: newNote.toString()})
     }
 
 

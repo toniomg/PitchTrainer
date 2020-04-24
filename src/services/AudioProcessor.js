@@ -6,8 +6,9 @@ const detectPitch = Pitchfinder.DynamicWavelet();
 
 const audioContext = new AudioContext();
 
-export default function startAudioCapturing(error) {
+export default function startAudioCapturing(error, success) {
     if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+
         navigator.mediaDevices.getUserMedia ({audio: true})
 
             .then(function(stream) {
@@ -25,7 +26,8 @@ export default function startAudioCapturing(error) {
                     const blob = new Blob(chunks);
                     convertToArrayBuffer(blob)
                         .then(arrayBuffer => audioContext.decodeAudioData(arrayBuffer))
-                        .then(findPitch);
+                        .then(findPitch)
+                        .then(success);
 
                 }, 2000);
             })
@@ -55,12 +57,13 @@ function findPitch(audioBuffer) {
     console.log("Pitch: " + pitch);
 
     if (pitch != null) {
-        convertPitchToNote(pitch)
+        return convertPitchToNote(pitch)
     }
+
+    return null
 }
 
 
 function convertPitchToNote(pitch) {
-    const note = teoria.note.fromFrequency(pitch).note;
-    console.log(note.name() + note.accidental() + note.octave())
+    return teoria.note.fromFrequency(pitch).note;
 }
